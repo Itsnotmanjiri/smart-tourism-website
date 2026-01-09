@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Smart Tourism India</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .icon {
+      font-size: 120px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .features {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .feature:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+    }
+
+    button {
+      background: white;
+      color: #1e3a8a;
+      border: none;
+      padding: 16px 32px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .status {
+      margin-top: 24px;
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.2);
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .online {
+      background: rgba(34, 197, 94, 0.2);
+    }
+
+    @media (max-width: 640px) {
+      .icon {
+        font-size: 80px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📡</div>
+    <h1>You're Offline</h1>
+    <p>No internet connection detected. But don't worry, you can still access your saved data!</p>
+    
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">📱</span>
+        <span>View your bookings</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💬</span>
+        <span>Read saved messages</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">📍</span>
+        <span>Access saved destinations</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">💰</span>
+        <span>Track your expenses</span>
+      </div>
+    </div>
+
+    <button onclick="location.reload()">
+      🔄 Try Again
+    </button>
+
+    <div class="status" id="status">
+      ❌ No internet connection
+    </div>
+  </div>
+
+  <script>
+    // Monitor online/offline status
+    function updateStatus() {
+      const status = document.getElementById('status');
+      if (navigator.onLine) {
+        status.className = 'status online';
+        status.innerHTML = '✅ Back online! Reloading...';
+        setTimeout(() => location.reload(), 1000);
+      } else {
+        status.className = 'status';
+        status.innerHTML = '❌ No internet connection';
+      }
+    }
+
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+
+    // Check status every 5 seconds
+    setInterval(() => {
+      if (navigator.onLine) {
+        updateStatus();
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
