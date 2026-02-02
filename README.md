@@ -2,7 +2,7 @@ cd "C:\Users\Manjiri Mahajan\Downloads\Smart Tourism Website (Copy) (Copy) (2)"
 
   # Smart Tourism Website (Copy) (Copy)
 
-  This is a code bundle for Smart Tourism Website (Copy) (Copy). The original project is available at https://www.figma.com/design/lEakgMz7ztKDHTRAJZK1xQ/Smart-Tourism-Website--Copy---Copy-.
+  This is a code bundle for Smart Tourism Website (Copy) (Copy). 
 
   ## Running the code
 
